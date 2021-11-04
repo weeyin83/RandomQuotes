@@ -60,3 +60,13 @@ steps:
     Space: 'Spaces-1'
     Package: 'RandomQuotes.$(Build.BuildNumber).nupkg'
     Replace: 'false'
+
+  - task: OctopusCreateRelease@4
+  displayName: Create Release
+  inputs:
+    OctoConnectedServiceName: 'OctoServer'
+    Space: 'Spaces-1'
+    ProjectGroup: 'ProjectGroups-1'
+    ProjectName: 'Projects-1'
+    DeployToEnvironment: 'Environments-1'
+    DeploymentProgress: true
