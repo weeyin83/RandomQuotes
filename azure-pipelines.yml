@@ -44,18 +44,18 @@ steps:
     publishWebProjects: false
     projects: '$(Build.SourcesDirectory)\RandomQuotes\RandomQuotes.csproj'
     arguments: --configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)\output
-    zipAfterPublish: true
+    zipAfterPublish: false
 
 - task: OctopusPack@4
-  displayName: Package for Octopus
+  displayName: Package RandomQuotes
   inputs:
-    PackageId: 'RandomQuotes'
-    PackageFormat: 'NuPkg'
-    PackageVersion: '1.0.$(Build.BuildId)'
-    SourcePath: '$(build.artifactstagingdirectory)\RandomQuotes'
-    - task: OctopusPush@4
-      inputs:
-        OctoConnectedServiceName: 'OctoServer'
-        Space: 'Spaces-1'
-        Package: 'RandomQuotes.$(Build.BuildNumber).nupkg'
-        Replace: 'false'
+    PackageId: RandomQuotes
+    PackageVersion: $(Build.BuildNumber)
+    SourcePath: $(build.artifactstagingdirectory)\output
+
+- task: OctopusPush@4
+  inputs:
+    OctoConnectedServiceName: 'OctoServer'
+    Space: 'Spaces-1'
+    Package: 'RandomQuotes.$(Build.BuildNumber).nupkg'
+    Replace: 'false'
