@@ -53,4 +53,9 @@ steps:
     PackageFormat: 'NuPkg'
     PackageVersion: '1.0.$(Build.BuildId)'
     SourcePath: '$(build.artifactstagingdirectory)\RandomQuotes'
-    
+    - task: OctopusPush@4
+      inputs:
+        OctoConnectedServiceName: 'OctoServer'
+        Space: 'Spaces-1'
+        Package: 'RandomQuotes.$(Build.BuildNumber).nupkg'
+        Replace: 'false'
