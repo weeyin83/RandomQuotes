@@ -61,7 +61,7 @@ steps:
     Package: 'RandomQuotes.$(Build.BuildNumber).nupkg'
     Replace: 'false'
 
-  - task: OctopusCreateRelease@4
+- task: OctopusCreateRelease@4
   displayName: Create Release
   inputs:
     OctoConnectedServiceName: 'OctoServer'
