@@ -54,6 +54,7 @@ steps:
     SourcePath: $(build.artifactstagingdirectory)\output
 
 - task: OctopusPush@4
+  displayName: Push to Octopus
   inputs:
     OctoConnectedServiceName: 'OctoServer'
     Space: 'Spaces-1'
