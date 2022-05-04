@@ -136,7 +136,7 @@ jobs:
         prerelease: 'false'
         target_commitish: ${{ github.sha }}
     - name: Push to Octopus
-      uses: OctopusDeploy/push-package-action@v1.1.1
+      uses: OctopusDeploy/push-package-action@v1.1.2
       with:
         api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
         packages: ${{ steps.package.outputs.artifacts }}
