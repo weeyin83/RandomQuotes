@@ -154,7 +154,7 @@ jobs:
         push_package_ids: RandomQuotes
         push_overwrite_mode: OverwriteExisting
         output_path: octopus
-name: DotNET Core Build
+name: Build and Test Random Quotes application
 'on':
   workflow_dispatch: {}
   push: {}
