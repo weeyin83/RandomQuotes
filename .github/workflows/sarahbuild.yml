@@ -147,7 +147,8 @@ jobs:
       uses: xo-energy/action-octopus-build-information@v1.1.2
       with:
         octopus_api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
-        octopus_project: RandomQuotes
+        octopus_project: Getting-Started
+        octopus_space: ${{ secrets.OCTOPUS_SPACE }}
         octopus_server: ${{ secrets.OCTOPUS_SERVER_URL }}
         push_version: ${{ steps.determine_version.outputs.semVer }}
         push_package_ids: RandomQuotes
