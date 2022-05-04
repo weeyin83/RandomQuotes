@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2.4.2
       with:
         fetch-depth: '0'
     - name: Set up DotNET Core
@@ -35,7 +35,7 @@ jobs:
       with:
         additionalArguments: /overrideconfig mode=Mainline
     - name: Install Octopus Deploy CLI
-      uses: OctopusDeploy/install-octocli@v1.1.1
+      uses: OctopusDeploy/install-octopus-cli-action@v1.2.0
       with:
         version: latest
     - name: Install Dependencies
@@ -45,7 +45,7 @@ jobs:
       run: dotnet list package > dependencies.txt
       shell: bash
     - name: Collect Dependencies
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.0.0
       with:
         name: Dependencies
         path: dependencies.txt
@@ -53,7 +53,7 @@ jobs:
       run: dotnet list package --outdated > dependencyUpdates.txt
       shell: bash
     - name: Collect Dependency Updates
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.0.0
       with:
         name: Dependencies Updates
         path: dependencyUpdates.txt
@@ -128,7 +128,7 @@ jobs:
         custom_tag: ${{ steps.determine_version.outputs.semVer }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v0.1.14
       with:
         files: ${{ steps.package.outputs.artifacts_new_line }}
         tag_name: ${{ steps.determine_version.outputs.semVer }}+run${{ github.run_number }}-attempt${{ github.run_attempt }}
@@ -144,7 +144,7 @@ jobs:
         space: ${{ secrets.OCTOPUS_SPACE }}
         overwrite_mode: OverwriteExisting
     - name: Generate Octopus Deploy build information
-      uses: xo-energy/action-octopus-build-information@v1.1.2
+      uses: xo-energy/action-octopus-build-information@v1.3.12
       with:
         octopus_api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
         octopus_project: Getting-Started
