@@ -289,5 +289,6 @@ __pycache__/
 
 # Custom
 .DS_Store
+.ionide/
 
 out
