@@ -160,6 +160,7 @@ jobs:
         api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
         project: Getting-Started
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
+        octopus_space: ${{ secrets.OCTOPUS_SPACE }}
         deploy_to: Development
         packages: ${{ steps.package.outputs.versions_new_line }}
 name: Build and Test Random Quotes application
