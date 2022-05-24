@@ -51,12 +51,4 @@ jobs:
         push_package_ids: ${{ env.PACKAGE_ID }}
         push_overwrite_mode: OverwriteExisting
         output_path: octopus
-    - name: Create Octopus Release
-      uses: OctopusDeploy/create-release-action@v1.1.1
-      with:
-        api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
-        project: Getting-Started
-        server: ${{ secrets.OCTOPUS_SERVER_URL }}
-        space: ${{ secrets.OCTOPUS_SPACE }}
-        deploy_to: Development
-        packages: ${{ env.PACKAGE_ID }}:${{ github.run_number }}
+    
