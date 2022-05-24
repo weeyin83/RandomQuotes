@@ -31,10 +31,6 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Create artifacts folder
-      run: |
-        mkdir "$GITHUB_WORKSPACE/artifacts"
-        mkdir "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID"
     - name: Publish application
       run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" $PROJECT_PATH
     - name: Create App Package
