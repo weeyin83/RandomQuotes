@@ -39,5 +39,5 @@ jobs:
     - name: Create App Package
       run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="${{ github.run_number }}" --basePath="$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Random Quotes App Package
-      run: octo push --package="${{ github.workspace }}\artifacts.$PACKAGE_ID.${{ github.run_number }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_TOKEN }}" --space="${{ secrets.OCTOPUS_SPACEE }}"
+      run: octo push --package="${{ github.workspace }}\artifacts\$PACKAGE_ID.${{ github.run_number }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_TOKEN }}" --space="${{ secrets.OCTOPUS_SPACEE }}"
 
