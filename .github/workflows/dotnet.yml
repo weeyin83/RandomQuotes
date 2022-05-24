@@ -48,7 +48,7 @@ jobs:
         octopus_space: ${{ secrets.OCTOPUS_SPACE }}
         octopus_server: ${{ secrets.OCTOPUS_SERVER_URL }}
         push_version: ${{ github.run_number }}
-        push_package_ids: RandomQuotes
+        push_package_ids: ${{ env.PACKAGE_ID }}
         push_overwrite_mode: OverwriteExisting
         output_path: octopus
     - name: Create Octopus Release
