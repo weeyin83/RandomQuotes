@@ -38,3 +38,22 @@ jobs:
       run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" $PROJECT_PATH
     - name: Create App Package
       run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" --outFolder="$GITHUB_WORKSPACE/artifacts"
+    - name: Push Random Quotes App Package
+      uses: OctopusDeploy/push-package-action@v1.1.1
+      with:
+        server: ${{ secrets.OCTOPUS_SERVER_URL }}
+        api_key: ${{ secrets.OCTOPUS_API_KEY }}
+        space: ${{ env.OCTOPUS_SPACE }}
+        packages: "artifacts/${{ env.PACKAGE_ID }}.${{ env.PACKAGE_VERSION }}.zip"
+        overwrite_mode: OverwriteExisting
+    - name: Generate Octopus Deploy build information
+      uses: xo-energy/action-octopus-build-information@v1.3.12
+      with:
+        octopus_api_key: ${{ secrets.OCTOPUS_API_TOKEN }}
+        octopus_project: Getting-Started
+        octopus_space: ${{ secrets.OCTOPUS_SPACE }}
+        octopus_server: ${{ secrets.OCTOPUS_SERVER_URL }}
+        push_version: $PACKAGE_VERSION
+        push_package_ids: $PACKAGE_ID
+        push_overwrite_mode: OverwriteExisting
+        output_path: octopus
