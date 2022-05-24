@@ -36,7 +36,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish application 🔖
       run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" $PROJECT_PATH
-    - name: Create App Package
+    - name: Create App Package 📦
       run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="${{ github.run_number }}" --basePath="$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Random Quotes App Package to Octopus 🐙
       run: octo push --package="${{ github.workspace }}/artifacts/${{ env.PACKAGE_ID }}.${{ github.run_number }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_TOKEN }}" --space="${{ secrets.OCTOPUS_SPACE }}"
