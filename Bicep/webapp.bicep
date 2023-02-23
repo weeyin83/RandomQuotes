@@ -2,7 +2,7 @@ param webSiteName string
 param location string = resourceGroup().location
 param planName string
 
-resource appService 'Microsoft.Web/sites@2021-03-01' = {
+resource appService 'Microsoft.Web/sites@2022-03-01' = {
   name: webSiteName
   location: location
   properties: {

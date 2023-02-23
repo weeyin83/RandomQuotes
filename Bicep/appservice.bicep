@@ -7,7 +7,7 @@ param skucode string
 ])
 param osType string
 
-resource name_resource 'Microsoft.Web/serverfarms@2021-03-01' = {
+resource name_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appname
   location: location
   kind: ''
